@@ -1,0 +1,24 @@
+/*articuloDetalle*/
+.encabezado{
+    padding: 10px;
+    display: flex;
+    
+}
+.encabezado span{
+    background-color: bisque;
+    padding: 2px 10px 2px 10px;
+    margin-left: 20px;
+    border-radius: 3px;
+}
+.encabezado span p {
+    margin: 0px;
+}
+.prece{
+    position: absolute;
+    right: 20px;
+}
+
+/*artuculoDestacados*/
+.carrusel{
+    margin-top: 50px;
+}

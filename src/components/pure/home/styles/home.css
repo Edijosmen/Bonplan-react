@@ -1,0 +1,99 @@
+#contenido{
+    width: 100%;
+    display: flex;
+}
+.card{
+    width: 100%;
+    cursor: default;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+    transition: all 400ms ease;
+}
+.card:hover{
+    
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+    transform: translateY(-3%);
+    
+}
+.cardfooter p {
+   text-align: start;
+
+}
+.cardfooter h5 {
+    color: rgb(30, 30, 184);
+ 
+}
+
+/* carrucel*/
+.width-carrucel{
+    width: 100%;
+}
+
+/* filter*/
+.backgroud{
+    padding: 300px 0px 400px 0px;
+    background-image:url(../../../../../public/img/pexels-fondo.jpg);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 30px;
+}
+.contenido{
+    display: flex;
+    justify-content: center;
+    
+}
+.filter{
+    background: whitesmoke;
+    padding-top: 50px;
+    padding: 20px;
+    position: absolute;
+    bottom: 20px;
+}
+.filter2{
+    display: block;
+    background: whitesmoke;
+    padding: 10px;
+}
+.span{
+    
+   background-color: rgb(238, 234, 230);
+   padding: 15px;
+   border: 0.1px solid rgb(180, 159, 159);
+}
+.span-true{
+   
+    background-color: bisque;
+    padding: 15px;
+    border: 0.1px solid rgb(211, 135, 21);
+    color: rgb(211, 135, 21);
+ }
+
+
+
+
+ /* Servicos*/
+ .venta{
+    padding: 10px;
+ }
+ .compra{
+    padding: 10px;
+    
+ }
+ .compra p{
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+ }
+ .venta p{
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+ }
+ .servicio{
+    display: flex;
+ }
+
+ @media (max-width: 576px) {
+    .servicio{
+        display: block;
+     }
+}

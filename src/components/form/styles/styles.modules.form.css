@@ -1,0 +1,12 @@
+/*contact*/
+.contacto{
+    background: lightgrey;
+    padding: 30px;
+}
+.contacto-form{
+    text-align: start;
+    
+}
+.submit{
+    text-align: center;
+}
