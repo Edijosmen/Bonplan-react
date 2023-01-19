@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import HttpClient from '../../services/HttpClient'
 import { useEffect } from 'react'
-import CardArticulo from '../pure/home/cardArticulo'
+import Card from '../pure/detalle/card'
 import { Property } from '../../models/property.class'
 function ArticuloCardList() {
     
@@ -18,9 +18,9 @@ function ArticuloCardList() {
     console.log("articulo",articulo);
   return (
     <div className='container mt-5 pb-5'>
-        <div className='row'>
+        <div className=''>
         {articulo.length>0 ? 
-            articulo.map((property,index)=><CardArticulo property={property} key={index}></CardArticulo>)
+            articulo.map((property,index)=><Card property={property} key={index}></Card>)
             :
             <h3>ho hay articulo</h3>
         }

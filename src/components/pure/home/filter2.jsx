@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './styles/home.css'
 export default function Filter2() {
-
+    const count = useSelector((state) => state.filter)
+    console.log("es count",count);
     const [obfilter,setFilter] = useState({
         search:'',
         desde:'',
@@ -40,7 +42,7 @@ export default function Filter2() {
                     });
                 }} />
                 </div>
-                <div className='col-12 col-md-1'>
+                <div className='col-12 col-md-2'>
                 <Link  className='btn btn-primary ' to={"/lista"}  >Buscar</Link>
                 </div>
           </div>

@@ -5,11 +5,15 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import {CreateAppStore} from './appStore/config/storeConfig';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+   <Provider store={CreateAppStore}>
     <App />
+   </Provider>
   </React.StrictMode>
 );
 

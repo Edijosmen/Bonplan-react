@@ -22,3 +22,13 @@
 .carrusel{
     margin-top: 50px;
 }
+
+/* lista-articulo*/
+.listaArticulo{
+    display: flex;
+}
+@media (max-width: 576px) {
+    .listaArticulo{
+        display: block;
+    }
+}
