@@ -7,7 +7,7 @@ const initialState = {
         estado:'',
         tipo:'local',
         nHabitacion:'',
-        nBaños:'',
+        nBanos:'',
 }
 
 export const filtersSlice = createSlice({
@@ -21,7 +21,7 @@ export const filtersSlice = createSlice({
             state.estado = action.payload.estado
             state.tipo = action.payload.tipo
             state.nHabitacion = action.payload.nHabitacion
-            state.nBaños = action.payload.nBaños
+            state.nBanos = action.payload.nBaños
             
         },
         

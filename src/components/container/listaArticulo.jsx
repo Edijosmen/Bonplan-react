@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Filter from '../pure/home/filter'
 import HttpCliente from '../../services/HttpClient'
 import ArticuloCardList from './articuloCard'
 import Filter2 from '../pure/home/filter2'
 import './styles/styles.module.container.css'
 export default function ListaArticulo() {
+  const  [num,setNum] = useState(0);
 
-   
+  const incrementarContador = (e)=>{
+    setNum(num+1);
+  }
   return (
     <div>
       <div className='listaArticulo'>
             <div className='col-12 col-md-4 col-lg-4'>
-                <Filter2></Filter2>
+                <Filter2 incrementarContador={incrementarContador}></Filter2>
             </div>
             <div className='col-12 col-md-8 col-lg-8'>
-                <ArticuloCardList></ArticuloCardList>
+                <ArticuloCardList num={num}></ArticuloCardList>
             </div>
+            <span>{num}dfdfdf</span>
       </div>
     </div>
   )
