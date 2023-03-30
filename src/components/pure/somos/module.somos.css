@@ -1,0 +1,25 @@
+.somos{
+    display: grid;
+    grid-template-columns: 50% 50%;
+   align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.som-text{
+    text-align:justify;
+   
+}
+.img-cons{
+    float: left;
+    width: 50%;
+}
+.img img{
+    width: 95%;
+    border-radius: 10px 100px / 120px;
+}
+.img{
+    border-radius: 15px solid red;
+}
+.mis-icon{
+    width: 5%;
+}

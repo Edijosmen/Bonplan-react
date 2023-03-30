@@ -1,19 +1,34 @@
 import React from 'react'
-
+import './styles/module.footer.css'
+import {GoLocation} from 'react-icons/go'
+import {AiFillFacebook,AiFillInstagram,AiFillLinkedin} from 'react-icons/ai'
 function Footer() {
     return (
-        <div className="container">
-            <footer className="py-3 my-4">
-                <div className='row border-bottom pb-3 mb-3'>
-                    <div className='col-12 col-md-6 col-sm-6'>
-                        <h3>Diver Plaza Engativá</h3>
+        <div className="container-flued">
+            <footer className="footer">
+                <div className='ubic'>
+                    <div className='location'>
+                        <div>
+                            <GoLocation className='icon-go'></GoLocation>
+                        </div>
+                        <div className='flex-col align-items-start'>
+
+                            <strong>Parque Central Bavaria</strong>
+                            <span>Carrera 13 No. 28  01. Piso 2</span>
+                            <span>(601) 000 000</span>
+
+                        </div>
                     </div>
-                    <div className='col-12 col-md-6 col-sm-6'>
+                    <div className=''>
                         <h3>Siguenos ...</h3>
+                        <AiFillFacebook className='icon-ai'></AiFillFacebook>
+                        <AiFillInstagram className='icon-ai'></AiFillInstagram>
+                        <AiFillLinkedin className='icon-ai'></AiFillLinkedin>
                     </div>
                 </div>
-                <br />
-                <p className="text-center text-muted">&copy; Copyright © 2020 Inmobiliaria Bogotá | Todos los derechos reservados </p>
+                <br className='brr' />
+                <hr></hr>
+                <p className="text-center text-muted mb-0 pb-3">&copy; Copyright © 2023 Bonplan Bogotá | Todos los derechos reservados </p>
             </footer>
         </div>
             

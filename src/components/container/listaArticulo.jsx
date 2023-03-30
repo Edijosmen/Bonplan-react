@@ -19,7 +19,7 @@ export default function ListaArticulo() {
             <div className='col-12 col-md-8 col-lg-8'>
                 <ArticuloCardList num={num}></ArticuloCardList>
             </div>
-            <span>{num}dfdfdf</span>
+            
       </div>
     </div>
   )
