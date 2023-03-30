@@ -68,9 +68,7 @@ export default function Filter() {
                       <div className='col-12 col-md-2'>
                           <Link className='btn btn-primary ' to={"/lista"} onClick={searchPro} >Buscar</Link>
                       </div>
-                      <div className='col-12 col-md-2'>
-                          <p className='btn btn-primary 'onClick={searchPro} >Buscardd</p>
-                      </div>
+                      
                   </div>
               </div>
           </div>

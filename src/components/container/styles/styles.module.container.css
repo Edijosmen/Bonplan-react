@@ -17,7 +17,25 @@
     position: absolute;
     right: 20px;
 }
-
+.detalle-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.atrib{
+    display: flex;
+    flex-direction: column;
+}
+.atrib-icon{
+    display: flex;
+    flex-direction: row;
+    
+}
+.fa-icon{
+    font-size: 30px;
+   margin-right: 10px;
+}
 /*artuculoDestacados*/
 .carrusel{
     margin-top: 50px;
@@ -27,6 +45,9 @@
 .listaArticulo{
     display: flex;
 }
+
+
+
 @media (max-width: 576px) {
     .listaArticulo{
         display: block;

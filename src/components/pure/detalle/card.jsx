@@ -28,13 +28,13 @@ return (
        <div>
        <Link to={`/detalle/${property.propertyId}`}>
        
-          <div class="row g-0">
-            <div class="col-md-4">
+          <div className="row g-0">
+            <div className="col-md-4">
             {property.imageStores.length>0 && <img width='100%' height='150rem' src={property.imageStores[0].imgUrl}></img>}
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"> {property.mcip_Name}</h5>
+            <div className="col-md-8">
+              <div className="card-body">
+                <h5 className="card-title"> {property.mcip_Name}</h5>
                 <div className='row'>
                   <div className='col-12'>
                   <p  style={prueba}>{property.propertyName}</p>

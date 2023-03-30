@@ -8,6 +8,7 @@ import ArticuloDetalle from './components/container/articuloDetalle';
 import Navbar from './components/pure/navbar/navbar';
 import Home from './pages/Home';
 import ListaArticulo from './components/container/listaArticulo';
+import Somos from './components/pure/somos/somos';
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/detalle/:propertyId' element={<ArticuloDetalle/>} />
           <Route path='/lista' element={<ListaArticulo/>} />
+          <Route path='/nosotros' element={<Somos/>} />
         </Routes>
        </Router>
        <Footer></Footer>

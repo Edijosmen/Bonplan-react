@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import HttpCliente from '../../../services/HttpClient'
@@ -19,17 +19,18 @@ export default function Filter2(props) {
         nHabitacion:'',
         nBanos:'',
     })
+    useEffect (()=>{
+        console.log("chatgpt",obfilter);
+        dispatch(setfilters(obfilter));
+    },[obfilter])
     const obtenerdatoH = (num) =>{
-        debugger
-        console.log("num",num);
         setFilter({
             ...obfilter,
-                nHabitacion:num});
-        
-        console.log(obfilter);
-        dispatch(setfilters(obfilter));
-        //props.incrementarContador();
-        console.log(obfilter);
+             nHabitacion:num});
+        console.log(obfilter.nHabitacion);
+        //dispatch(setfilters(obfilter));
+        props.incrementarContador();
+       
     }
     const obtenerdatoB = (num) =>{
         setFilter({
@@ -40,10 +41,15 @@ export default function Filter2(props) {
         console.log(obfilter);
     }
    
-    const prueba =(<ListaArticulo></ListaArticulo>);
+    
     function filterXprecio(){
         dispatch(setfilters(obfilter));
-        //props.incrementarContador();
+        props.incrementarContador();
+    }
+    console.log("obfilterfind",obfilter);
+   function filternH(){
+    debugger;
+    console.log("preuba",obfilter);
     }
   return (
      <div className=''>
@@ -133,7 +139,11 @@ export default function Filter2(props) {
            <span className='text-start'>Habitaciones</span>
               <div className='mb-3 col'>
               
-                  <div class="form-check form-check-inline mb-3 mt-3" onClick={()=>obtenerdatoH("1")}>
+                  <div class="form-check form-check-inline mb-3 mt-3" onClick={()=>{
+                        obtenerdatoH("1");
+                         console.log("obfilter",obfilter);
+                         filternH();
+                  }}>
                         {obfilter.nHabitacion==="1" ? <span className='span-true'>1</span>:<span className='span'>1</span>}
                   </div>
                   <div class="form-check form-check-inline  mb-3 mt-3 " onClick={()=>obtenerdatoH("2")}>
@@ -179,6 +189,7 @@ export default function Filter2(props) {
           
       </div>
          </div>
+         <p>{obfilter.nHabitacion}</p>
      </div>
   )
 }
