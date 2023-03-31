@@ -8,7 +8,9 @@ import ArticuloDetalle from './components/container/articuloDetalle';
 import Navbar from './components/pure/navbar/navbar';
 import Home from './pages/Home';
 import ListaArticulo from './components/container/listaArticulo';
-import Somos from './components/pure/somos/somos';
+import Somos from './components/pure/view/somos';
+import Visitenos from './components/pure/view/visitenos';
+import Contacto from './components/pure/view/contacto';
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,8 @@ function App() {
           <Route path='/detalle/:propertyId' element={<ArticuloDetalle/>} />
           <Route path='/lista' element={<ListaArticulo/>} />
           <Route path='/nosotros' element={<Somos/>} />
+          <Route path='/visitenos' element={<Visitenos/>}/>
+          <Route path='/contacto' element={<Contacto/>}/>
         </Routes>
        </Router>
        <Footer></Footer>

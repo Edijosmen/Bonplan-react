@@ -1,6 +1,6 @@
 .footer{
     margin-top: 30px;
-    background-color: blueviolet;
+    background-color: #973961;
 }
 .ubic{
     display: grid;
@@ -16,11 +16,17 @@
 .icon-go{
     font-size: 50px;
     margin: 15px;
+    color: aliceblue;
 }
 .icon-ai{
     font-size: 50px;
+    color: aliceblue;
 }
 .flex-col{
     display: flex;
     flex-direction: column;
+    color: aliceblue;
+}
+.Copyright{
+    color: aliceblue;
 }
