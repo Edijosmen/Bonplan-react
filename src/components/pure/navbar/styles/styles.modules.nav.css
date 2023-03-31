@@ -4,3 +4,11 @@
     transform: translatex(-50%);
     margin-bottom: 20px;
 }
+.bgr{
+    background-color: #973961;
+    
+}
+.bg-white{
+    color: aliceblue;
+    --bs-bg-opacity:0;
+}

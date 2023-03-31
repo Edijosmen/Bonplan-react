@@ -1,0 +1,81 @@
+.somos{
+    display: grid;
+    grid-template-columns: 50% 50%;
+   align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.som-text{
+    text-align:justify;
+   
+}
+.img-cons{
+    float: left;
+    width: 50%;
+}
+.img img{
+    width: 95%;
+    border-radius: 10px 100px / 120px;
+}
+.img{
+    border-radius: 15px solid red;
+}
+.mis-icon{
+    width: 5%;
+}
+
+.float-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.float-colm{
+    display: flex;
+    flex-direction: column;
+}
+.conte{
+   text-align: center;
+}
+.tb-icon{
+    font-size: 20px;
+    margin: 5px;
+}
+.gr-icon{
+    font-size: 50px;
+    margin: 15px;
+}
+.location{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.vi-title{
+    font-weight: bold;
+    font-size: 25px;   
+}
+
+.cont-img{
+    width: 100%;
+}
+.flex-colm{
+    display: grid;
+    grid-template-columns: 50% 40%;
+    gap: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.date{
+    text-align: center;
+}
+.form-contacto{
+    background-color: #973961;
+    padding: 25px;
+    border-radius: 10px;
+}
+@media (max-width: 576px) { 
+
+    .location{
+      display: grid;
+      grid-template-columns: auto;
+    }
+  
+   }

@@ -19,8 +19,8 @@ function Footer() {
 
                         </div>
                     </div>
-                    <div className=''>
-                        <h3>Siguenos ...</h3>
+                    <div className='pt-3'>
+                        <h3 className='Copyright'>Siguenos ...</h3>
                         <AiFillFacebook className='icon-ai'></AiFillFacebook>
                         <AiFillInstagram className='icon-ai'></AiFillInstagram>
                         <AiFillLinkedin className='icon-ai'></AiFillLinkedin>
@@ -28,7 +28,7 @@ function Footer() {
                 </div>
                 <br className='brr' />
                 <hr></hr>
-                <p className="text-center text-muted mb-0 pb-3">&copy; Copyright © 2023 Bonplan Bogotá | Todos los derechos reservados </p>
+                <p className="text-center  mb-0 pb-3 Copyright">&copy; Copyright © 2023 Bonplan Bogotá | Todos los derechos reservados </p>
             </footer>
         </div>
             
