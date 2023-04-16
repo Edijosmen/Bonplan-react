@@ -57,7 +57,7 @@ export default function Panel() {
  
   }
 
-  const assingIdx = (idx) => {
+  const assingPropertyId = (idx) => {
     setIdProperty(idx);
   }
     
@@ -97,7 +97,7 @@ export default function Panel() {
                         <td>{producto.typeContract ? "Arriendo" : "Venta"}</td>
                         <td>{producto.state ? "disponible" : "no diponible"}</td>
                         <td>
-                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal" onClick={assingIdx(productos.propertyId)}>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal" onClick={assingPropertyId(productos.propertyId)}>
                             Delete
                           </button>
                           <button>Modificar</button>
@@ -121,7 +121,7 @@ export default function Panel() {
                         <td>{productos.typeContract ? "Arriendo" : "Venta"}</td>
                         <td>{productos.state ? "disponible" : "no diponible"}</td>
                         <td>
-                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal" onClick={assingIdx(productos.propertyId)}>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal" onClick={assingPropertyId(productos.propertyId)}>
                             Delete
                           </button>
                           <button>Modificar</button>
