@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import Select from 'react-select';
 import { Field,Form, Formik,ErrorMessage } from 'formik';
-import httpClient from '../../../../services/HttpClient'
+import httpClient from '../../../../services/HttpClient';
+import ImgsForm from './imgsForm';
+
+const ID_PROPERTY = "9339ed6a-74f6-4a78-a7c9-83521bf3e280";
+
 export default function Producto() {
     const initialValues = {
         description: '',
@@ -23,7 +27,7 @@ export default function Producto() {
       const optionsMunicip = [];
     
     useEffect(() => {
-        if (optionsDepart.length == 0) {
+        if (optionsDepart.length === 0) {
             httpClient.get("Departamento")
                 .then(response => {                   
                     optionsDepart.length = 0;
@@ -138,6 +142,16 @@ export default function Producto() {
                   )}
               </Formik>
 
+          </section>
+          <section>
+            <div class="px-4 py-5 my-5 text-center">
+                <h1 class="display-5 fw-bold">Insert images here</h1>
+                <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-center">
+                    <ImgsForm idx={ID_PROPERTY}/>
+                </div>
+                </div>
+            </div>
           </section>
       </main>
   )
