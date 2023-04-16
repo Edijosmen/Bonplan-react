@@ -1,6 +1,13 @@
+.body-footer{
+position: relative;
+height: 300px;
+}
 .footer{
     margin-top: 30px;
     background-color: #973961;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 .ubic{
     display: grid;

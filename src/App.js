@@ -11,6 +11,8 @@ import ListaArticulo from './components/container/listaArticulo';
 import Somos from './components/pure/view/somos';
 import Visitenos from './components/pure/view/visitenos';
 import Contacto from './components/pure/view/contacto';
+import Panel from './components/pure/admin/panel';
+import Producto from './components/pure/admin/form/producto';
 function App() {
   return (
     <div className="App">
@@ -24,6 +26,8 @@ function App() {
           <Route path='/nosotros' element={<Somos/>} />
           <Route path='/visitenos' element={<Visitenos/>}/>
           <Route path='/contacto' element={<Contacto/>}/>
+          <Route path='/adm' element={<Panel/>}/>
+          <Route path='/adm/new-producto' element={<Producto/>}/>
         </Routes>
        </Router>
        <Footer></Footer>
