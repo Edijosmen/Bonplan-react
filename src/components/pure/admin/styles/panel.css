@@ -1,0 +1,19 @@
+.panel{
+    height: 100vh;
+}
+.panel .acciones {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    gap: 25px;
+}
+.alert-panel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 50px;
+    margin: auto;
+}

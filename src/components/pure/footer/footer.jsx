@@ -4,7 +4,7 @@ import {GoLocation} from 'react-icons/go'
 import {AiFillFacebook,AiFillInstagram,AiFillLinkedin} from 'react-icons/ai'
 function Footer() {
     return (
-        <div className="container-flued">
+        <div className="body-footer">
             <footer className="footer">
                 <div className='ubic'>
                     <div className='location'>
