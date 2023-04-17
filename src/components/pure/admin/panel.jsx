@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 
 import httpclient from '../../../services/HttpClient'
 import './styles/panel.css'
+import Modal from './form/modal'
 import $ from 'jquery';
+
 export default function Panel() {
     const [productos,setProductos] = useState();
     const [search,setSearch] = useState();
+    const [idProperty, setIdProperty] = useState();
+
     const handleSearchChange = (e) => {
       setSearch(e.target.value);
       if(e.target.value.length > 0) {
@@ -52,9 +56,14 @@ export default function Panel() {
       );
  
   }
+
+  const assingPropertyId = (idx) => {
+    setIdProperty(idx);
+  }
     
   return (
     <main>
+      {productos == null && <Alert />}
       <section className='panel ms-5 me-5'>
      
         <section className='acciones'>
@@ -87,8 +96,10 @@ export default function Panel() {
                         <td >{producto.propertyName}</td>
                         <td>{producto.typeContract ? "Arriendo" : "Venta"}</td>
                         <td>{producto.state ? "disponible" : "no diponible"}</td>
-                        <td> 
-                          <button>Eliminar</button>
+                        <td>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal" onClick={assingPropertyId(productos.propertyId)}>
+                            Delete
+                          </button>
                           <button>Modificar</button>
                         </td>
                       </tr>
@@ -110,7 +121,9 @@ export default function Panel() {
                         <td>{productos.typeContract ? "Arriendo" : "Venta"}</td>
                         <td>{productos.state ? "disponible" : "no diponible"}</td>
                         <td>
-                          <button>Eliminar</button>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="deleteModal" onClick={assingPropertyId(productos.propertyId)}>
+                            Delete
+                          </button>
                           <button>Modificar</button>
                         </td>
                   </tr>
@@ -119,8 +132,8 @@ export default function Panel() {
 
           </tbody>
         </table>
+        <Modal title="Delete product" body="Are you sure to delete this product?" target="delete" idx={idProperty}/>
       </section>
-    
     </main>
     
   )
