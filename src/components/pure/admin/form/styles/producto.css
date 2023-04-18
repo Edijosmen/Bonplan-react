@@ -1,0 +1,28 @@
+.wth-100{
+    width: 100%;
+}
+.form-producto{
+    display: grid;
+    grid-template-columns: 50%;
+    justify-content: center;
+   
+}
+.form-producto .fl{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.form-producto .clm{
+    display: flex;
+    flex-direction: column;
+    
+}
+.medida,.propiedad,.contrato,.banios,.habitaciones{
+    width: 100%;
+}
+.ubicacion .depart{
+    width: 100%;
+}
+.ubicacion .muncp{
+    width: 100%;
+}
