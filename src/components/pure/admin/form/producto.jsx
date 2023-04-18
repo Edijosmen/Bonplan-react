@@ -1,26 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import Select from 'react-select';
 import { Field,Form, Formik,ErrorMessage } from 'formik';
 import httpClient from '../../../../services/HttpClient';
 import ImgsForm from './imgsForm';
+import {MdAddCircle,MdRemoveCircle} from 'react-icons/md';
 
-const ID_PROPERTY = "9339ed6a-74f6-4a78-a7c9-83521bf3e280";
+
+
 
 export default function Producto() {
+    const [inputValue, setInputValue] = useState('');
+    const [items, setItems] = useState([]);
+    const[show,setShow] = useState(false);
+    const[showInsert,setShowInsert] = useState(true);
+    const [ID_PROPERTY, setIdProperty] = useState();
     const initialValues = {
         description: '',
         prece: '',
-        typeContract: 0,
+        typeContract: '',
         state: 0,
         dimencion: '',
-        typPropertyId: 0,
+        typPropertyId: '',
         mcip_Id: 0,
         dpart_Id: 0,
         localidad: '',
-        nHabitacion: 0,
-        nBanio: 0,
-        caracteristicas: '',
-        picked:''
+        nHabitacion: '',
+        nBanio: '',
+        caracteristicas:''
        
     };
       const optionsDepart = [];
@@ -44,10 +50,49 @@ export default function Producto() {
                 });
         }
     }, [])
-     
+    
+    // Función para manejar el cambio en el input
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    // Función para manejar el clic en el botón "Add"
+    const handleAddClick = () => {
+        // Agregar el valor del input al array de items
+        setItems([...items, inputValue]);
+        // Limpiar el valor del input
+        setInputValue('');
+    };
+
+    const handleDeleteClick = (index) => {
+        // Crea una copia del array de items
+        const updatedItems = [...items];
+        // Remueve el elemento del array usando el índice proporcionado
+        updatedItems.splice(index, 1);
+        // Actualiza el estado con el nuevo array sin el elemento eliminado
+        setItems(updatedItems);
+      };
+
+
     const handleSubmit = (values, { setSubmitting }) => {
         // Lógica para manejar la presentación de los datos del formulario
+        console.log("sumid");
         setSubmitting(false);
+        values.caracteristicas=items.toString();
+        values.typeContract = parseInt(values.typeContract);
+        values.typPropertyId = parseInt(values.typPropertyId);
+        values.nBanio = parseInt(values.nBanio);
+        values.nHabitacion = parseInt(values.nHabitacion);
+        httpClient.post("Property/Insert",values)
+                    .then(response => {
+                        setIdProperty(response.data.data);
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+        setShow(true);
+        setShowInsert(false);
     };
     const handleSelectChange = (selectedOption, { setFieldValue }) => {
         // Función para manejar el cambio de selección en el select
@@ -74,76 +119,162 @@ export default function Producto() {
     const handleSelectChangeMucip = (selectedOption, { setFieldValue }) => {
         setFieldValue('mcip_Id', selectedOption.value);
     }
-
+    console.log(ID_PROPERTY);
   return (
       <main>
-          <section>
+          {showInsert &&
+            <section>
               <Formik
                   initialValues={initialValues}
                   onSubmit={handleSubmit}
               >
                   {({ isSubmitting, values, setFieldValue }) => (
 
-                      <Form>
-                          {console.log(values)}
+                      <Form className='form-producto'>
+                        
                           <label htmlFor="description">Descripción</label>
-                          <Field type="text" name="description" id="description" />
+                          <Field as="textarea" name="description" id="description" />
                           <ErrorMessage name="description" component="div" />
 
-                          <label htmlFor="description">Medida o Area</label>
-                          <Field type="text" name="medida" id="dimencion" />
-                          <ErrorMessage name="dimencion" component="div" />
+                          <section className='fl'>
+                              <div className='medida clm' >
+                                  <label htmlFor="description">Medida o Area</label>
+                                  <Field type="text" name="dimencion" id="dimencion" />
+                                  <ErrorMessage name="dimencion" component="div" />
+                              </div>
 
-                          <label htmlFor="description">Tipo de contrato</label>
-                          <Field as="select" name="type" id="type">
-                              <option defaultValue>Selecionar...</option>
-                              <option value="option2">Venta</option>
-                              <option value="option3">Arriendo</option>
-                          </Field>
-                          <label htmlFor="description">Tipo de Propiedad</label>
-                          <Field as="select" name="type" id="type">
-                              <option defaultValue>Selecionar...</option>
-                              <option value="option2">Casa</option>
-                              <option value="option3">Apartamento</option>
-                              <option value="option3">local</option>
-                          </Field>
-                          <label htmlFor="description">Departamento</label>
-                          <Select
-                              id="selecDepart"
-                              name="selecDepart"
-                              options={optionsDepart}
-                              value={values.dpart_Id.label} // Valor seleccionado del estado de Formik
-                              onChange={(dpart_Id) => handleSelectChange(dpart_Id, { setFieldValue })}
-                          />
-                          {console.log("depaet", optionsDepart)}
-                          <label htmlFor="Municipio">Municipio</label>
-                          <Select
-                              id="selectMcip"
-                              name="selectMcip"
-                              options={optionsMunicip}
-                              value={values.mcip_Id.label} // Valor seleccionado del estado de Formik
-                              onChange={(mcip_Id) => handleSelectChangeMucip(mcip_Id, { setFieldValue })}
-                          />
+                              <div className='contrato clm'>
+                                  <label htmlFor="description">Tipo de contrato</label>
+                                  <Field as="select" name="typeContract" id="type">
+                                      <option defaultValue>Selecionar...</option>
+                                      <option value="0">Venta</option>
+                                      <option value="1">Arriendo</option>
+                                  </Field>
+                              </div>
+                              <div className='propiedad clm'>
+                                  <label htmlFor="description">Tipo de Propiedad</label>
+                                  <Field as="select" name="typPropertyId" id="type">
+                                      <option defaultValue>Selecionar...</option>
+                                      <option value="1">Casa</option>
+                                      <option value="2">Apartamento</option>
+                                      <option value="3">local</option>
+                                  </Field>
+                              </div>
+                          </section>
+                          <section className='ubicacion fl'>
+                              <div className='depart clm'>
+                                  <label htmlFor="description">Departamento</label>
+                                  <Select
+                                      id="selecDepart"
+                                      name="selecDepart"
+                                      options={optionsDepart}
+                                      value={values.dpart_Id.label} // Valor seleccionado del estado de Formik
+                                      onChange={(dpart_Id) => handleSelectChange(dpart_Id, { setFieldValue })}
+                                  />
+                              </div>
+                              <div className='muncp clm'>
+                                  <label htmlFor="Municipio">Municipio</label>
+                                  <Select
+                                      id="selectMcip"
+                                      name="selectMcip"
+                                      options={optionsMunicip}
+                                      value={values.mcip_Id.label} // Valor seleccionado del estado de Formik
+                                      onChange={(mcip_Id) => handleSelectChangeMucip(mcip_Id, { setFieldValue })}
+                                  />
+                              </div>
+                          </section> 
                           <label htmlFor="localidad">Localidad</label>
                             <Field type="text" name="localidad" id="localidad"></Field>
+                          
+                          <section className='fl'>
+                              <div className='habitaciones clm'>
+                                  <label htmlFor="habitaciones">N° Habitaciones</label>
+                                  <div role="group" aria-labelledby="my-radio-group">
+                                      <label className="pe-2">
+                                          <Field  type="radio" name="nHabitacion" value="1" />
+                                          1
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nHabitacion" value="2" />
+                                          2
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nHabitacion" value="3" />
+                                          3
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nHabitacion" value="4" />
+                                          4
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nHabitacion" value="5" />
+                                          5
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nHabitacion" value="6" />
+                                          5+
+                                      </label>
+                                      <div>Picked: {values.nHabitacion}</div>
+                                  </div>
+                              </div>
+                              <div className='banios cml'>
+                                  <label htmlFor="banios">N° Baños</label>
+                                  <div role="group" aria-labelledby="my-radio-group">
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nBanio" value="1" />
+                                          1
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nBanio" value="2" />
+                                          2
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nBanio" value="3" />
+                                          3
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nBanio" value="4" />
+                                          4
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nBanio" value="5" />
+                                          5
+                                      </label>
+                                      <label className="pe-2">
+                                          <Field type="radio" name="nBanio" value="6" />
+                                          5+
+                                      </label>
+                                      <div>Picked: {values.nBanio}</div>
+                                  </div>
+                              </div>
+                          </section>
+                          <section>
+                              <div className='fl'>
+                                  <div className='wth-100'>
+                                      <input className='me-2' type="text" value={inputValue} onChange={handleInputChange} />
+                                      <button type='button' onClick={handleAddClick}>Add</button>
+                                      <ul>
+                                          {items.map((item, index) => (
+                                              <li key={index}>{item} <MdRemoveCircle onClick={()=>handleDeleteClick(index)}></MdRemoveCircle></li>
+                                          ))}
+                                      </ul>
+                                  </div>
+
+                                  <div className='wth-100'>
+                                      <label className='pe-2' htmlFor="precio">Precio</label>
+                                      <Field type="text" name="prece" ></Field>
+                                  </div>
+                              </div>
+                          </section>
                           <button type="submit" disabled={isSubmitting}>Enviar</button>
-                          <div role="group" aria-labelledby="my-radio-group">
-                              <label>
-                                  <Field type="radio" name="picked" value="One" />
-                                  One
-                              </label>
-                              <label>
-                                  <Field type="radio" name="picked" value="Two" />
-                                  Two
-                              </label>
-                              <div>Picked: {values.picked}</div>
-                          </div>
                       </Form>
                   )}
               </Formik>
 
           </section>
-          <section>
+          }
+          {show && 
+            <section>
             <div class="px-4 py-5 my-5 text-center">
                 <h1 class="display-5 fw-bold">Insert images here</h1>
                 <div class="col-lg-6 mx-auto">
@@ -153,6 +284,7 @@ export default function Producto() {
                 </div>
             </div>
           </section>
+          }
       </main>
   )
 }
