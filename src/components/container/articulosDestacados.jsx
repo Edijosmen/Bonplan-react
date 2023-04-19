@@ -7,14 +7,13 @@ export default function ArticulosDestacados() {
     const [articulo,setArticulo] = useState([]);
     useEffect(()=>{
         HttpClient.get('Property/GetAll').then((response) =>{
-            console.log("response",response);
             setArticulo(response.data.data);
         },(err) =>{
             console.log("err",err);
         })
     },[])
-    console.log("artr", articulo);
-    console.log("artrbee", articulo[1]);
+   
+    
   return (
     <div>
         {articulo != null && articulo.length>0 ? 

@@ -9,31 +9,18 @@ import { useSelector } from 'react-redux'
 
 function ArticuloCardList(props) {
     const filterState = useSelector((state)=>state.filter);
-    console.log("filterstate",filterState);
     const [filter,setfile] = useState(filterState);
-    const user = useMemo(()=>(
-        {
-            search:filter.search,
-            desde:filter.desde,
-            hasta:filter.hasta,
-            estado:filter.estado,
-            tipo:filter.tipo,
-            nHabitacion:filter.nHabitacion,
-            nBaños:filter.nBaños,
-        }
-    )[filter.search,filter.desde,filter.hasta,filter.estado,filter.tipo,filter.nHabitacion,filter.nBaños]);
+   
 
     const [articulo,setArticulo] = useState([])
     useEffect(() =>{
         HttpClient.post('Property/Filters',filterState).then((response) =>{
-            console.log(response);
             setArticulo(response.data.data);
         },(err) =>{
             console.log(err);
         })
         setfile(filterState);
-    } ,[props.num]);
-    console.log("articulo",articulo);
+    } ,[filterState]);
   return (
     <div className='container mt-5 pb-5'>
         <div className=''>

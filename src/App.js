@@ -13,6 +13,7 @@ import Visitenos from './components/pure/view/visitenos';
 import Contacto from './components/pure/view/contacto';
 import Panel from './components/pure/admin/panel';
 import Producto from './components/pure/admin/form/producto';
+import UpdProducto from './components/pure/admin/form/updProducto';
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,7 @@ function App() {
           <Route path='/contacto' element={<Contacto/>}/>
           <Route path='/adm' element={<Panel/>}/>
           <Route path='/adm/new-producto' element={<Producto/>}/>
+          <Route path='/upd/:propertyId' element={<UpdProducto/>} />
         </Routes>
        </Router>
        <Footer></Footer>

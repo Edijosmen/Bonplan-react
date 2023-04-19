@@ -12,8 +12,6 @@ function CardArticulo({property}) {
         padding : '5px',
     }
   
-    console.log("propiedades",property);
-    //console.log("propiedadesdfdfdf",property.imageStores[0].imgUrl);
 
     function handleClick (id){
         console.log("vistaDetalle",id);
@@ -37,7 +35,7 @@ function CardArticulo({property}) {
                     <p>{property.propertyName}</p>
                     <p className='mb-0'>Area: {property.dimencion} m²</p>
                     <p>{property.dpart_Name}</p>
-                    {property.typeContracto===0 ? <h5>Arriendo</h5> :<h5>Venta</h5>}
+                    {property.typeContract === 0 ? <h5>Arriendo</h5> :<h5>Venta</h5>}
                     <h5 >$ {property.prece}</h5>
               </div>
           </div>

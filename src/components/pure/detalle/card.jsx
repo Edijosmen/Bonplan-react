@@ -15,7 +15,7 @@ export default function  Card({property}) {
     
 }
 
-  console.log("propiedades",property);
+
   //console.log("propiedadesdfdfdf",property.imageStores[0].imgUrl);
 
   function handleClick (id){
@@ -40,7 +40,7 @@ return (
                   <p  style={prueba}>{property.propertyName}</p>
                   <p  style={prueba} className='mb-0'>Area: {property.dimencion} m²</p>
                   <p  style={prueba}>{property.dpart_Name}</p>
-                  {property.typeContracto===0 ? <h5  style={prueba}>Arriendo</h5> :<h5  style={prueba}>Venta</h5>}
+                  {property.typeContract===0 ? <h5  style={prueba}>Arriendo</h5> :<h5  style={prueba}>Venta</h5>}
                   <h5  style={prueba}>$ {property.prece}</h5>
                   </div>
                 </div>

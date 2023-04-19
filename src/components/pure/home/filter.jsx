@@ -10,27 +10,16 @@ export default function Filter() {
         search:'',
         desde:'',
         hasta:'',
-        estado:'1',
+        estado:'0',
         tipo:'local',
         nHabitacion:'',
         nBanos:'',
     })
-    let  filter ={
-        search:'holaa',
-    }
-    const obtenerdatoH = (num) =>{
-        setFilter({
-            ...obfilter,
-                nHabitacion:num})
-    }
-    const obtenerdatoB = (num) =>{
-        setFilter({
-            ...obfilter,
-                nBanos:num})
-    }
-    console.log(obfilter);
+  
+   
+    
     function searchPro (){
-        console.log(" ssisiisisisi");
+       
         dispatch(setfilters(obfilter));
         
     }
@@ -48,8 +37,8 @@ export default function Filter() {
                                       estado: e.target.value
                                   });
                               }}>                             
-                              <option value="1">Arriedo</option>
-                              <option value="0">Venta</option>
+                              <option value="0">Arriendo</option>
+                              <option value="1">Venta</option>
                           </select>
                       </div>
                       <div className='col-12 col-md-6 mb-3'>

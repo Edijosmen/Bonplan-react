@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Filter from '../pure/home/filter'
-import HttpCliente from '../../services/HttpClient'
 import ArticuloCardList from './articuloCard'
 import Filter2 from '../pure/home/filter2'
 import './styles/styles.module.container.css'
@@ -8,7 +6,8 @@ export default function ListaArticulo() {
   const  [num,setNum] = useState(0);
 
   const incrementarContador = (e)=>{
-    setNum(num+1);
+    setNum(num+1);  
+    
   }
   return (
     <div>
