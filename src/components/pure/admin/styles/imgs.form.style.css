@@ -49,3 +49,19 @@
   bottom: 0px;
   left: 0px;
 }
+.alert-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  margin: auto;
+}
+ .conten{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}

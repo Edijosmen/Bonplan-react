@@ -1,33 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import HttpCliente from '../../../services/HttpClient'
 import { setfilters } from '../../../appStore/slices/filters/filtersSlice';
 import './styles/home.css'
-import { render } from 'react-dom';
-import ListaArticulo from '../../container/listaArticulo';
+
 export default function Filter2(props) {
     const dispatch = useDispatch();
     const count = useSelector((state) => state.filter)
-    console.log("es count",count);
+
     const [obfilter,setFilter] = useState({
         search:'',
         desde:'',
         hasta:'',
-        estado:'',
+        estado:count.estado,
         tipo:'local',
         nHabitacion:'',
         nBanos:'',
     })
     useEffect (()=>{
-        console.log("chatgpt",obfilter);
         dispatch(setfilters(obfilter));
     },[obfilter])
+
     const obtenerdatoH = (num) =>{
         setFilter({
             ...obfilter,
              nHabitacion:num});
-        console.log(obfilter.nHabitacion);
+       
         //dispatch(setfilters(obfilter));
         props.incrementarContador();
        
@@ -36,9 +34,8 @@ export default function Filter2(props) {
         setFilter({
             ...obfilter,
             nBanos:num});
-        dispatch(setfilters(obfilter));
-        //props.incrementarContador();
-        console.log(obfilter);
+        //dispatch(setfilters(obfilter));
+        props.incrementarContador();
     }
    
     
@@ -46,11 +43,7 @@ export default function Filter2(props) {
         dispatch(setfilters(obfilter));
         props.incrementarContador();
     }
-    console.log("obfilterfind",obfilter);
-   function filternH(){
-    debugger;
-    console.log("preuba",obfilter);
-    }
+   
   return (
      <div className=''>
          <div className=''>
@@ -94,6 +87,7 @@ export default function Filter2(props) {
                                 ...obfilter,
                                 hasta: e.target.value
                             });
+                           
                         }} />
               </div>
           </div>
@@ -104,19 +98,30 @@ export default function Filter2(props) {
           </div>
           <div className='row'>
                 <div className='mb-3 col'>
-                    <label className='control-label'>Estado del Inmueble</label>
+                    <label className='control-label'>Tipo de Contrato</label>
                     <select className='form-select' value={obfilter.estado}
                      onChange={e=>{
-                            setFilter({
+                        setFilter ({
                                 ...obfilter,
                                 estado: e.target.value
                             });
+                            
+                            props.incrementarContador();
                         }}>
-                        <option value="1">Arriendo</option>
-                        <option value="0">Venta</option>
+                        {
+                            count.estado ==="0" ? <>
+                            <option value="0">Arriendo</option>
+                            <option value="1">Venta</option>
+                            </>:
+                            <>
+                            <option value="1">Venta</option>
+                            <option value="0">Arriendo</option>
+                            </>
+                        }
+                       
                     </select>
                 </div>
-              <div className='mb-3 col'>
+              {/* <div className='mb-3 col'>
                   <label className='control-label'>Tipo de Inmueble</label>
                   <select className='form-select' 
                         value={obfilter.tipo}
@@ -130,65 +135,61 @@ export default function Filter2(props) {
                         <option>local</option>
                         <option>casa</option>
                   </select>
-              </div>
+              </div> */}
               
-          </div>
-          {obfilter.tipo!=="local"  &&
-            <div>
-            <div className='row'>
-           <span className='text-start'>Habitaciones</span>
-              <div className='mb-3 col'>
-              
-                  <div class="form-check form-check-inline mb-3 mt-3" onClick={()=>{
-                        obtenerdatoH("1");
-                         console.log("obfilter",obfilter);
-                         filternH();
-                  }}>
-                        {obfilter.nHabitacion==="1" ? <span className='span-true'>1</span>:<span className='span'>1</span>}
                   </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3 " onClick={()=>obtenerdatoH("2")}>
-                        {obfilter.nHabitacion==="2" ? <span className='span-true'>2</span>:<span className='span'>2</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3" onClick={()=>obtenerdatoH("3")}>
-                        {obfilter.nHabitacion==="3" ? <span className='span-true'>3</span>:<span className='span'>3</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3" onClick={()=>obtenerdatoH("4")}>
-                       {obfilter.nHabitacion==="4" ? <span className='span-true'>4</span>:<span className='span'>4</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3" onClick={()=>obtenerdatoH("5")}>
-                       {obfilter.nHabitacion==="5" ? <span className='span-true'>5+</span>:<span className='span'>5</span>}
-                  </div>
-              </div>
-              
-          </div>
-          <div className='row'>
-          <span className='text-start'>Baños</span>
-              <div className='mb-3 col'>
-              
-              <div class="form-check form-check-inline mb-3 mt-3" onClick={()=>obtenerdatoB("1")}>
-                        {obfilter.nBanos==="1" ? <span className='span-true'>1</span>:<span className='span'>1</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3 " onClick={()=>obtenerdatoB("2")}>
-                        {obfilter.nBanos==="2" ? <span className='span-true'>2</span>:<span className='span'>2</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3" onClick={()=>obtenerdatoB("3")}>
-                        {obfilter.nBanos==="3" ? <span className='span-true'>3</span>:<span className='span'>3</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3" onClick={()=>obtenerdatoB("4")}>
-                       {obfilter.nBanos==="4" ? <span className='span-true'>4</span>:<span className='span'>4</span>}
-                  </div>
-                  <div class="form-check form-check-inline  mb-3 mt-3" onClick={()=>obtenerdatoB("5")}>
-                       {obfilter.nBanos==="5" ? <span className='span-true'>5+</span>:<span className='span'>5</span>}
-                  </div>
-              </div>
-              
-          </div>
-            </div>
 
-          }
-          
-      </div>
-         </div>
+                  <div>
+                      <div className='row'>
+                          <span className='text-start'>Habitaciones</span>
+                          <div className='mb-3 col'>
+
+                              <div class="form-check form-check-inline mb-3 mt-3" onClick={() => {obtenerdatoH("1")}}>
+                                  {obfilter.nHabitacion === "1" ? <span className='span-true'>1</span> : <span className='span'>1</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3 " onClick={() => obtenerdatoH("2")}>
+                                  {obfilter.nHabitacion === "2" ? <span className='span-true'>2</span> : <span className='span'>2</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3" onClick={() => obtenerdatoH("3")}>
+                                  {obfilter.nHabitacion === "3" ? <span className='span-true'>3</span> : <span className='span'>3</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3" onClick={() => obtenerdatoH("4")}>
+                                  {obfilter.nHabitacion === "4" ? <span className='span-true'>4</span> : <span className='span'>4</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3" onClick={() => obtenerdatoH("5")}>
+                                  {obfilter.nHabitacion === "5" ? <span className='span-true'>5+</span> : <span className='span'>5</span>}
+                              </div>
+                          </div>
+
+                      </div>
+                      <div className='row'>
+                          <span className='text-start'>Baños</span>
+                          <div className='mb-3 col'>
+
+                              <div class="form-check form-check-inline mb-3 mt-3" onClick={() => obtenerdatoB("1")}>
+                                  {obfilter.nBanos === "1" ? <span className='span-true'>1</span> : <span className='span'>1</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3 " onClick={() => obtenerdatoB("2")}>
+                                  {obfilter.nBanos === "2" ? <span className='span-true'>2</span> : <span className='span'>2</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3" onClick={() => obtenerdatoB("3")}>
+                                  {obfilter.nBanos === "3" ? <span className='span-true'>3</span> : <span className='span'>3</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3" onClick={() => obtenerdatoB("4")}>
+                                  {obfilter.nBanos === "4" ? <span className='span-true'>4</span> : <span className='span'>4</span>}
+                              </div>
+                              <div class="form-check form-check-inline  mb-3 mt-3" onClick={() => obtenerdatoB("5")}>
+                                  {obfilter.nBanos === "5" ? <span className='span-true'>5+</span> : <span className='span'>5</span>}
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+
+
+
+              </div>
+          </div>
          <p>{obfilter.nHabitacion}</p>
      </div>
   )

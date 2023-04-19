@@ -4,18 +4,34 @@ import { Field,Form, Formik,ErrorMessage } from 'formik';
 import httpClient from '../../../../services/HttpClient';
 import ImgsForm from './imgsForm';
 import {MdAddCircle,MdRemoveCircle} from 'react-icons/md';
+import { useParams } from 'react-router-dom';
 
 
 
 
-export default function Producto() {
+export default function UpdProducto() {
+    let { propertyId } = useParams();
     const [inputValue, setInputValue] = useState('');
     const [items, setItems] = useState([]);
     const[show,setShow] = useState(false);
+    const [property, setProperty] = useState({
+        description: '',
+        prece: '',
+        typeContract: '',
+        state: 1,
+        dimencion: '',
+        typPropertyId: '',
+        mcip_Id: 0,
+        dpart_Id: 0,
+        localidad: '',
+        nHabitacion: '',
+        nBanio: '',
+        caracteristicas:''
+    });
     const[showInsert,setShowInsert] = useState(true);
     const [ID_PROPERTY, setIdProperty] = useState();
     const initialValues = {
-        description: '',
+        description:property.description,
         prece: '',
         typeContract: '',
         state: 1,
@@ -29,26 +45,36 @@ export default function Producto() {
         caracteristicas:''
        
     };
+
       const optionsDepart = [];
       const optionsMunicip = [];
     
     useEffect(() => {
-        if (optionsDepart.length === 0) {
-            httpClient.get("Departamento")
+      
+    httpClient.get(`Property/GetById?propertyId=${propertyId}`)
                 .then(response => {                   
-                    optionsDepart.length = 0;
-                    response.data.data.map((item) => {
-                        const option = {
-                            value: item.dpart_Id,
-                            label: item.dpart_Name.trim()
-                        };
-                        optionsDepart.push(option);
-                    });
+                    setIdProperty({... response.data.data});
+                   console.log("response",response.data.data);
+                   setProperty(prevProperty => ({
+                    ...prevProperty,
+                    description: response.data.data.description,
+                    caracteristicas: response.data.data.caracteristicas,
+                    prece: response.data.data.prece,
+                    typeContract: response.data.data.typeContract,
+                    state: response.data.data.state,
+                    dimencion: response.data.data.dimencion,
+                    typPropertyId: response.data.data.propertyName,
+                    mcip_Id: response.data.data.mcip_Name,
+                    dpart_Id: response.data.data.dpart_Name,
+                    localidad: response.data.data.localidad,
+                    nHabitacion: response.data.data.nHabitacion,
+                    nBanio: response.data.data.nBanio
+                  }));
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error("error",error);
                 });
-        }
+        
     }, [])
     
     // Función para manejar el cambio en el input
@@ -118,7 +144,8 @@ export default function Producto() {
     const handleSelectChangeMucip = (selectedOption, { setFieldValue }) => {
         setFieldValue('mcip_Id', selectedOption.value);
     }
-    console.log(ID_PROPERTY);
+    console.log("initialvalues",initialValues);
+    console.log(property);
   return (
       <main>
           {showInsert &&
@@ -132,31 +159,30 @@ export default function Producto() {
                       <Form className='form-producto'>
                         
                           <label htmlFor="description">Descripción</label>
-                          <Field as="textarea" name="description" id="description" />
+                          <Field as="textarea" name="description" value={property.description} id="description" />
                           <ErrorMessage name="description" component="div" />
 
                           <section className='fl'>
                               <div className='medida clm' >
                                   <label htmlFor="description">Medida o Area</label>
-                                  <Field type="text" name="dimencion" id="dimencion" />
+                                  <Field type="text" name="dimencion" value={property.dimencion} id="dimencion" />
                                   <ErrorMessage name="dimencion" component="div" />
                               </div>
 
                               <div className='contrato clm'>
                                   <label htmlFor="description">Tipo de contrato</label>
                                   <Field as="select" name="typeContract" id="type">
-                                      <option defaultValue>Selecionar...</option>
-                                      <option value="1">Venta</option>
-                                      <option value="0">Arriendo</option>
+                                        {property.typeContract===0 ?  <option value="0">Arriendo</option>:<option value="1">Venta</option>}                                  
+                                     
+                                     
                                   </Field>
                               </div>
                               <div className='propiedad clm'>
                                   <label htmlFor="description">Tipo de Propiedad</label>
                                   <Field as="select" name="typPropertyId" id="type">
-                                      <option defaultValue>Selecionar...</option>
+                                      
                                       <option value="1">Casa</option>
-                                      <option value="2">Apartamento</option>
-                                      <option value="3">local</option>
+                                     
                                   </Field>
                               </div>
                           </section>
@@ -168,7 +194,7 @@ export default function Producto() {
                                       name="selecDepart"
                                       options={optionsDepart}
                                       value={values.dpart_Id.label} // Valor seleccionado del estado de Formik
-                                      onChange={(dpart_Id) => handleSelectChange(dpart_Id, { setFieldValue })}
+                                      
                                   />
                               </div>
                               <div className='muncp clm'>
@@ -178,7 +204,7 @@ export default function Producto() {
                                       name="selectMcip"
                                       options={optionsMunicip}
                                       value={values.mcip_Id.label} // Valor seleccionado del estado de Formik
-                                      onChange={(mcip_Id) => handleSelectChangeMucip(mcip_Id, { setFieldValue })}
+                                      
                                   />
                               </div>
                           </section> 
@@ -270,19 +296,6 @@ export default function Producto() {
                   )}
               </Formik>
 
-          </section>
-          }
-          {show && 
-            <section>
-            <div className="px-4 py-5 my-5 text-center">
-                <h1 className="display-5 fw-bold">Insert images here</h1>
-                <div className="col-lg-6 mx-auto">
-                <div className="d-grid gap-2 d-sm-flex justify-content-center">
-                    <ImgsForm idx={ID_PROPERTY}/>
-                    {console.log(ID_PROPERTY)}
-                </div>
-                </div>
-            </div>
           </section>
           }
       </main>
