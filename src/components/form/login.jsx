@@ -2,8 +2,10 @@ import { Field,Form, Formik,ErrorMessage } from 'formik';
 import React from 'react'
 import httpclient from '../../services/HttpClient'
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 function Login() {
     const [showAlert, setShowAlert] = useState(false); 
+    const navigate = useNavigate();
     const login ={
         usuario: '',
         password: '', 
@@ -45,6 +47,8 @@ function Login() {
                         httpclient.post("Auth/login",values).then((response) =>{       
                           if(response.status ===200){
                             console.log(response);
+                            localStorage.setItem("Token",response.data);
+                            navigate("/adm");
                           }
                             
                         },(errors) =>{
