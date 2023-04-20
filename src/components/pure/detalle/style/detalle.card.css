@@ -1,0 +1,10 @@
+.link .card-contenido p{
+    text-decoration: none;
+    margin: 10px;
+    text-align: justify;
+}
+.link{
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
