@@ -18,7 +18,9 @@ export default function Producto() {
         description: '',
         prece: '',
         typeContract: '',
+
         state: 1,
+
         dimencion: '',
         typPropertyId: '',
         mcip_Id: 0,
@@ -76,6 +78,8 @@ export default function Producto() {
 
     const handleSubmit = (values, { setSubmitting }) => {
         // Lógica para manejar la presentación de los datos del formulario
+
+
         values.caracteristicas=items.toString();
         values.typeContract = parseInt(values.typeContract);
         values.typPropertyId = parseInt(values.typPropertyId);
@@ -89,7 +93,7 @@ export default function Producto() {
                     .catch(error => {
                         console.log(error);
                     });
-        
+
         setShow(true);
         setShowInsert(false);
     };
@@ -146,8 +150,10 @@ export default function Producto() {
                                   <label htmlFor="description">Tipo de contrato</label>
                                   <Field as="select" name="typeContract" id="type">
                                       <option defaultValue>Selecionar...</option>
+
                                       <option value="1">Venta</option>
-                                      <option value="0">Arriendo</option>
+                                      <option value="0">Arriendo</option>  
+
                                   </Field>
                               </div>
                               <div className='propiedad clm'>
@@ -274,10 +280,13 @@ export default function Producto() {
           }
           {show && 
             <section>
+
             <div className="px-4 py-5 my-5 text-center">
                 <h1 className="display-5 fw-bold">Insert images here</h1>
                 <div className="col-lg-6 mx-auto">
                 <div className="d-grid gap-2 d-sm-flex justify-content-center">
+
+
                     <ImgsForm idx={ID_PROPERTY}/>
                     {console.log(ID_PROPERTY)}
                 </div>
