@@ -100,6 +100,14 @@ export default function ArticuloDetalle() {
                 
               </span>
             </div>
+            <div className='col-12 col-lg-8 col-md-6 col-sm-12 col-xs-12'>
+              <h4 className='text-start'>Referencia</h4>
+              <hr />
+              <span className="row">
+              { articulo.propertyId}
+                
+              </span>
+            </div>
           </div>
           
         </div>

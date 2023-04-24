@@ -48,7 +48,7 @@ export default function Contact() {
                       </div>
                      
                      <div className='submit'>
-                     <button  className='btn btn-dark mt-3 ' type="submit">Submit</button>
+                     <button  className='btn btn-dark mt-3 ' type="submit">enviar</button>
                      </div>
                     
                   </Form>
