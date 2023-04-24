@@ -21,10 +21,10 @@ function CardArticulo({property}) {
     <div className=' col-lg-4 col-md-4 col-sm-12 col-xs-12' style={tamño}>
          {property != null &&
          <div>
-         <Link to={`/detalle/${property.propertyId}`}>
+         <Link className='card-articulo' to={`/detalle/${property.propertyId}`}>
           <div className="card text-center "  >
               <div className="card-header">
-                  {property.mcip_Name}
+                  <span>{property.mcip_Name}</span>
                  
               </div>
               <div className="card-body"  >
@@ -32,11 +32,13 @@ function CardArticulo({property}) {
                  {property.imageStores.length>0 && <img width='100%' height='150rem' src={property.imageStores[0].imgUrl}></img>}
               </div>
               <div className="card-footer text-muted cardfooter"  >
-                    <p>{property.propertyName}</p>
-                    <p className='mb-0'>Area: {property.dimencion} m²</p>
+                    <p>Tipo de Propiedad: {property.propertyName}</p>
+                    <p className='mb-0'>Area: {property.dimencion}</p>
                     <p>{property.dpart_Name}</p>
-                    {property.typeContract === 0 ? <h5>Arriendo</h5> :<h5>Venta</h5>}
-                    <h5 >$ {property.prece}</h5>
+                    <div className='precio'>
+                    {property.typeContract === 0 ? <span>Arriendo</span> :<h5>Venta</h5>}
+                    <span > $ {property.prece}</span>
+                    </div>
               </div>
           </div>
           </Link>

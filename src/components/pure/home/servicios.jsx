@@ -5,7 +5,7 @@ export default function Servicios() {
   return (
     <div>
      <div>
-     <h2>Servios</h2>
+     <h2>Servicios</h2>
      </div>
       <div className='servicio'>
         <div className='col-12 col-md-6 col-lg-6'>

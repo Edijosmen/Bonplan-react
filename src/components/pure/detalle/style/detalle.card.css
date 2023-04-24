@@ -7,4 +7,28 @@
     text-decoration: none;
     color: black;
     margin: 10px;
+   
+}
+.link:hover{
+    color: black;
+}
+.card{
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+    transition: all 400ms ease;
+}
+.card:hover{
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+    transform: translateY(-3%);
+    
+}
+.card-title{
+    color: #973961;
+    font-weight: bold;
+}
+.precio{
+    color: #973961;
+    font-size: 20px;
+    font-family: 'Black Ops One', cursive;
 }

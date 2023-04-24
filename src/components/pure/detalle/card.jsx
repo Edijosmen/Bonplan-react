@@ -26,7 +26,7 @@ export default function Card({ property }) {
   return (
     <div className=' col-lg-4 col-md-4 col-sm-12 col-xs-12' style={tamño}>
       {property != null &&
-        <div>
+        <div className='card'>
           <Link className='link' to={`/detalle/${property.propertyId}`}>
 
             <div className="row g-0">
@@ -42,8 +42,10 @@ export default function Card({ property }) {
                       <p style={prueba}>{property.propertyName}</p>
                       <p style={prueba} className='mb-0'>Area: {property.dimencion} m²</p>
                       <p style={prueba}>{property.dpart_Name}</p>
-                      {property.typeContract === 0 ? <h5 style={prueba}>Arriendo</h5> : <h5 style={prueba}>Venta</h5>}
-                      <h5 style={prueba}>$ {property.prece}</h5>
+                      <div className='precio'>
+                      {property.typeContract === 0 ? <span style={prueba}>Arriendo</span> : <span style={prueba}>Venta</span>}
+                      <span style={prueba}>  $/ {property.prece}</span>
+                      </div>
                     </div>
 
                   </div>

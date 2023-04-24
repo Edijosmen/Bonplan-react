@@ -79,7 +79,7 @@ export default function Filter2(props) {
                       />
               </div>
               <div className='mb-3 col'>
-                  <label className='control-label'>Precio Haste:</label>
+                  <label className='control-label'>Precio Hasta:</label>
                  <input className='form-control' placeholder='Hasta'
                   value={obfilter.hasta}
                   onChange={e=>{

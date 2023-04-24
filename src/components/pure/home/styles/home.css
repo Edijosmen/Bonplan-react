@@ -1,3 +1,6 @@
+
+ @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Righteous&display=swap');
+
 #contenido{
     width: 100%;
     display: flex;
@@ -92,6 +95,32 @@
     display: flex;
  }
 
+.card-articulo{
+    text-decoration: none;
+    color: #973961;
+    font-weight: bold;
+}
+.card-articulo:hover{
+    text-decoration: none;
+    color: #973961;
+    font-weight: bold;
+}
+.cardfooter .precio {
+   display: flex;
+   flex-direction: column;
+}
+.cardfooter .precio span{
+    color: #973961;
+    font-size: 20px;
+    font-family: 'Black Ops One', cursive;
+    
+}
+.card-header{
+    background-color: #973961;
+}
+.card-header span{
+   color:aliceblue;
+}
  @media (max-width: 576px) {
     .servicio{
         display: block;
