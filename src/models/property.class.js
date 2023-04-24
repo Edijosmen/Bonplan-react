@@ -1,5 +1,4 @@
 
-
 export class Property {
         prece = 0;
         typeContract= 0;
