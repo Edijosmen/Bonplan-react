@@ -44,7 +44,7 @@ export default function Filter() {
                       <div className='col-12 col-md-6 mb-3'>
                           <input className='form-control ' type="search"
                               value={obfilter.search}
-                              placeholder='Buscar..'
+                              placeholder='Buscar..por municipio,departamento,contrato'
                               aria-label='Search'
                               onChange={e => {
                                   setFilter({
