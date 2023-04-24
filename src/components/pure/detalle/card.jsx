@@ -22,6 +22,7 @@ export default function Card({ property }) {
     console.log("vistaDetalle", id);
     navigate(`/detalle/${id}`);
   }
+
   return (
     <div className=' col-lg-4 col-md-4 col-sm-12 col-xs-12' style={tamño}>
       {property != null &&
@@ -44,6 +45,7 @@ export default function Card({ property }) {
                       {property.typeContract === 0 ? <h5 style={prueba}>Arriendo</h5> : <h5 style={prueba}>Venta</h5>}
                       <h5 style={prueba}>$ {property.prece}</h5>
                     </div>
+
                   </div>
                 </div>
               </div>

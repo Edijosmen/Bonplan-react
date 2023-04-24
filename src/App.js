@@ -14,7 +14,9 @@ import Contacto from './components/pure/view/contacto';
 import Panel from './components/pure/admin/panel';
 import Producto from './components/pure/admin/form/producto';
 import UpdProducto from './components/pure/admin/form/updProducto';
+
 import Protected from './router/Protected';
+
 
 function App() {
   
